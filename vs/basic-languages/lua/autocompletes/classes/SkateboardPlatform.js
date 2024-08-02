@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"Throttle":{"label":{"name":"Throttle","type":"(int)"}},"MoveState":{"label":{"name":"MoveState","type":"(MoveState)"}},"Controller":{"label":{"name":"Controller","type":"(SkateboardController)"}},"StickyWheels":{"label":{"name":"StickyWheels","type":"(bool)"}},"ControllingHumanoid":{"label":{"name":"ControllingHumanoid","type":"(Humanoid)"}},"Steer":{"label":{"name":"Steer","type":"(int)"}}},"Event":{"RemoteDestroyMotor6D":{"label":{"name":"RemoteDestroyMotor6D","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/RemoteDestroyMotor6D)"]}},"Unequipped":{"label":{"name":"Unequipped","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/Unequipped)"]}},"MoveStateChanged":{"label":{"name":"MoveStateChanged","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/MoveStateChanged)"]}},"unequipped":{"label":{"name":"unequipped","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/unequipped)"]}},"equipped":{"label":{"name":"equipped","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/equipped)"]}},"Equipped":{"label":{"name":"Equipped","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/Equipped)"]}},"RemoteCreateMotor6D":{"label":{"name":"RemoteCreateMotor6D","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/RemoteCreateMotor6D)"]}}},"Method":{"ApplySpecificImpulse":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/SkateboardPlatform/ApplySpecificImpulse)"]},"insertText":"ApplySpecificImpulse(${1:impulseWorld}) \n\t\nend","label":{"name":"ApplySpecificImpulse","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
