@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <style type="text/css">
+        :root {
+            --url: url("");
+        }
+
+        html,
+        body {
+            background-color: rgb(0, 0, 0);
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Consolas, 'Courier New', monospace;
+            color: white;
+        }
+
+        .margin:first-child {
+            background-image: var(--url);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .lines-content:nth-of-type(1),
+        .monaco-editor-background:nth-of-type(1) {
+            background-image: var(--url);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div id="container" style="width:100%;height:100%;"></div>
+
+    <script src="vs/loader.js"></script>
+
+    <script type="text/javascript">
+
+
+
+        require.config({
+            paths: {
+                'vs': 'vs',
+            }
+        });
+
+
+
+        // API
+        var GetText;
+        var SetText;
+        var SetTheme;
+        var SetScroll;
+        var ShowErr;
+        var Refresh;
+
+        // Enablers
+        var SwitchMinimap;
+        var SwitchReadonly;
+        var SwitchRenderWhitespace;
+        var SwitchLinks;
+        var SwitchLineHeight;
+        var SwitchFontSize;
+        var SwitchFolding;
+        var SwitchAutoIndent;
+        var SwitchFontFamily;
+        var SwitchFontLigatures;
+        var AddIntellisense;
+
+        // Variables
+        var editor;
+        var LuauData = [];
+        var Proposals = [];
+        var Variables = [];
+        var AutoCompleteExcludes = [];
+
+
+        //--// IntelliSense Functions //--//
+
+        require(['vs/editor/editor.main'], function () {
+
+            function getDependencyProposals(positioninfo) {
+                let Model = editor.getModel()
+                let newProposals = [];
+
+                var FToken = CleanVariableContextTable(Model.getValueInRange({ startLineNumber: 1, startColumn: 1, endLineNumber: positioninfo.lineNumber, endColumn: positioninfo.column }).split(/\n|\w/))
+
+                let VariableAddContext = FToken[FToken.length - 1] == '.'
+
+                if (Proposals.length == 0 || Proposals[0].__scope__ && Proposals[0].__scope__ == "root") {
+                    var varresult = GetEditorVariables()
+
+                    let pos = editor.getPosition()
+                    let token = Model.getWordAtPosition(pos);
+                    let ctoken = Model.getWordUntilPosition(pos)
+
+                    for (const key in varresult) {
+                        let matchname = varresult[key].matches[0]
+
+                        //--// Prevent Provider to show when typing variable. //--//
+
+                        if (token && matchname == token.word) {
+                            continue
+                        }
+
+                        if (token == null) {
+                            continue
+                        }
+                        if (VariableAddContext == true) {
+                            continue
+                        }
+                        let d = {}
+
+                        d.label = matchname
+                        d.insertText = matchname
+                        d.sortText = matchname
+                        d.kind = 4
+                        d.__scope__ = matchname
+                        d.__children__ = []
+                        d.documentation = {
+                            value: [
+                                "```lua\nlocal " + matchname + "\n```",
+                                "Defined at Line: " + varresult[key].range.startLineNumber
+                            ].join("\n")
+                        }
+                        newProposals.push(d)
+                    }
+                    Variables = varresult
+                }
+                for (let index = 0; index < Proposals.length; index++) {
+                    const element = Proposals[index];
+                    let newElement = {}
+                    let skipping = false
+
+                    if (skipping == true) {
+                        continue
+                    }
+
+                    for (const key in element) {
+                        if (key == "__children__") {
+                            continue;
+                        };
+
+                        newElement[key] = element[key];
+                    }
+
+                    //--// Adds Correct Compatability for New Moncao Editors //--//
+
+                    if (typeof (newElement.label) != "string") {
+                        if (newElement.label.name) {
+                            newElement.label = newElement.label.name
+                        }
+                    }
+
+                    newElement.textLabel = newElement.label || ""
+
+                    newProposals.push(newElement)
+                }
+
+                return newProposals;
+            }
+
+            CleanVariableContextTable = function (List) {
+                let newlist = []
+                for (const key in List) {
+                    if (List[key] != "") {
+                        newlist.push(List[key])
+                    }
+                }
+                return newlist
+            }
+
+            GetEditorVariables = function () {
+                const VariableFinderRegex = /(?<=local\s)[a-zA-Z1-9_]+/
+                if (editor) {
+                    var IModel = editor.getModel();
+                    var result = IModel.findMatches(VariableFinderRegex, true, true, false, null, true)
+                    return result
+                }
+                else {
+                    return []
+                }
+            }
+
+            StringLimit = function (str) {
+                const string = str.toString()
+
+                const letter1 = string.charAt(0);
+                const letter2 = string.charAt(1);
+                const letter3 = string.charAt(2);
+                const letter4 = string.charAt(3);
+                const letter5 = string.charAt(4);
+
+
+
+                return letter1 + letter2 + letter3 + letter4 + letter5;
+            }
+
+            HSVToRGB = function (h, s, v) {
+                h *= 360;
+                let c = v * s;
+                let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+                let m = v - c;
+                let r, g, b;
+                if (h >= 0 && h < 60) { r = c; g = x; b = 0; } else if (h >= 60 && h < 120) { r = x; g = c; b = 0; } else if (h >= 120 && h < 180) { r = 0; g = c; b = x; } else if (h >= 180 && h < 240) { r = 0; g = x; b = c; } else if (h >= 240 && h < 300) { r = x; g = 0; b = c; } else if (h >= 300 && h < 360) { r = c; g = 0; b = x; }
+                return [(r + m), (g + m), (b + m)];
+            }
+
+            GetColors = function () {
+
+                //--// Constant REGEX's //--//
+
+                const Color3NewReg = /Color3\.new\(\s*?(\d+\.\d+|\d+)\s*?,\s*?(\d+\.\d+|\d+)\s*?,\s*?(\d+\.\d+|\d+)\s*?\)/g;
+                const Color3FromRGBReg = /Color3\.fromRGB\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/g;
+                const Color3FromHSVReg = /Color3\.fromHSV\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/g;
+                const Color3FromHexReg = /Color3\.fromHex\(["].*["]\)/g;
+                if (editor) {
+                    var IModel = editor.getModel();
+                    var Color3NewResult = IModel.findMatches(Color3NewReg, true, true, false, null, true);
+                    var Color3RGBResult = IModel.findMatches(Color3FromRGBReg, true, true, false, null, true);
+                    var Color3HSVResult = IModel.findMatches(Color3FromHSVReg, true, true, false, null, true);
+                    var Color3HEXResult = IModel.findMatches(Color3FromHexReg, true, true, false, null, true);
+                    //--// Note //--//
+                    //--// Auto Set Alpha to 1 To prevent ColorProvider Issues //--//
+                    const DATA = []
+                    for (const key in Color3NewResult) {
+
+                        const VALUE = Color3NewResult[key]
+                        const Match = VALUE.matches[0]
+                        const ColorMatches = Match.match(/\d+\.\d+|\d+/g)
+                        const Range = VALUE.range
+                        const Data = {
+                            color: { red: ColorMatches[1], green: ColorMatches[2], blue: ColorMatches[3], alpha: 1, type: "new" },
+                            range: Range,
+                        }
+                        DATA.push(Data)
+                    }
+                    for (const key in Color3RGBResult) {
+                        const VALUE = Color3RGBResult[key]
+                        const Match = VALUE.matches[0]
+                        const ColorMatches = Match.match(/\d+/g)
+                        const Range = VALUE.range
+
+                        const Data = {
+                            color: { red: ColorMatches[1] / 255, green: ColorMatches[2] / 255, blue: ColorMatches[3] / 255, alpha: 1 },
+                            range: Range
+                        }
+                        DATA.push(Data)
+                    }
+
+                    for (const key in Color3HSVResult) {
+                        const VALUE = Color3HSVResult[key]
+                        const Match = VALUE.matches[0]
+                        const ColorMatches = Match.match(/\d+/g)
+                        const Range = VALUE.range
+                        const RealColorMatches = HSVToRGB(ColorMatches[1], ColorMatches[2], ColorMatches[3])
+                        const Data = {
+                            color: { red: RealColorMatches[0], green: RealColorMatches[1], blue: RealColorMatches[2], alpha: 1 },
+                            range: Range
+                        }
+                        DATA.push(Data)
+                    }
+
+                    for (const key in Color3HEXResult) {
+                        const VALUE = Color3HEXResult[key]
+                        const Match = VALUE.matches[0]
+                        const ColorMatches = Match.match(/[\S*]/g)
+                        const Range = VALUE.range
+                        const Data = {
+                            color: { red: 255, green: 255, blue: 255, alpha: 1 },
+                            range: Range
+                        }
+                        DATA.push(Data)
+                    }
+
+                    return DATA
+                }
+                else {
+                    return []
+                }
+            }
+
+            //--// Editor Data //--//
+
+
+            monaco.languages.register({ id: "luau" })
+
+            require(["vs/basic-languages/lua/lua.js"], function (langinfo) {
+
+                monaco.languages.setMonarchTokensProvider("luau", langinfo.language)
+                monaco.languages.setLanguageConfiguration("luau", langinfo.conf)
+            })
+
+            monaco.editor.defineTheme('net-theme-light', {
+                base: 'vs',
+                inherit: true,
+                rules: [
+                    { token: 'global', foreground: '000000' },
+                    { token: 'keyword', foreground: 'ff6a00' },
+                    { token: 'comment', foreground: '666666' },
+                    { token: 'number', foreground: 'ffc600' },
+                    { token: 'string', foreground: 'ff8c3a' },
+                ]
+            });
+
+            monaco.editor.defineTheme('net-theme-dark', {
+                base: 'vs-dark',
+                inherit: true,
+                rules: [
+                    { token: 'global', foreground: 'FFFFFF', fontStyle: "bold" },
+                    { token: 'keyword', foreground: 'ff6a00', fontStyle: "bold" },
+                    { token: 'comment', foreground: '666666' },
+                    { token: 'number', foreground: 'ffc600' },
+                    { token: 'string', foreground: 'ff8c3a' },
+                ]
+            });
+
+            monaco.editor.defineTheme('Core', {
+                base: 'vs-dark',
+                inherit: true,
+                rules: [
+                    { token: '', foreground: '#C3CCDB' },
+                    { token: 'variable.language.self', foreground: '#F7768E' },
+                    { token: 'variable.parameter.variadic', foreground: '#F7768E' },
+                    { token: 'variable.parameter.function', foreground: '#E0AF68' },
+                    { token: 'variable.other.constant', foreground: '#FF9E64' },
+                    { token: 'variable.property', foreground: '#7DCFFF' },
+                    { token: 'variable.object.property', foreground: '#73DACA' },
+
+                    { token: 'keyword', foreground: '#BB9AF7' },
+                    { token: 'keyword.local', foreground: '#997BD6', fontStyle: 'italic' },
+
+                    { token: 'keyword.operator', foreground: '#89DDFF' },
+                    { token: 'keyword.operator.type.annotation', foreground: '#9ABDF5' },
+                    { token: 'keyword.operator.typedef.annotation', foreground: '#89DDFF' },
+                    { token: 'keyword.control.export', foreground: '#997BD6', fontStyle: 'italic' },
+
+                    { token: 'operator', foreground: '#89DDFF' },
+                    { token: 'operator.type', foreground: '#BB9AF7' },
+                    { token: 'operator.special', foreground: '#BB9AF7' },
+
+                    { token: 'entity.name.type.alias', foreground: '#5ab6d6' },
+                    { token: 'entity.name.function', foreground: '#7AA2F7' },
+
+                    { token: 'global', foreground: '#7AA2F7' },
+
+                    { token: 'storage.type', foreground: '#BB9AF7' },
+
+                    { token: 'comment', foreground: '#666666', fontStyle: 'italic' },
+                    { token: 'comment.highlight.title', foreground: '#89DDFF', fontStyle: 'italic' },
+                    { token: 'comment.highlight.name', foreground: '#89DDFF', fontStyle: 'italic' },
+                    { token: 'comment.delimiter.modifier', foreground: '#9ABDF5', fontStyle: 'italic' },
+                    { token: 'comment.highlight.modifier', foreground: '#7DCFFF', fontStyle: 'italic' },
+                    { token: 'comment.highlight.descriptor', foreground: '#F7768E', fontStyle: 'italic' },
+
+                    { token: 'delimiter.longstring', foreground: '#89DDFF' },
+                    { token: 'delimiter.bracket', foreground: '#a6afbd' },
+                    { token: 'delimiter.array', foreground: '#a6afbd' },
+                    { token: 'delimiter.parenthesis', foreground: '#a6afbd' },
+                    { token: 'delimiter', foreground: '#a6afbd' },
+
+                    { token: 'string', foreground: '#9ECE6A' },
+                    { token: 'longstring', foreground: '#9ECE6A' },
+                    { token: 'string.delimeter', foreground: '#89DDFF' },
+                    { token: 'string.escape', foreground: '#89DDFF' },
+
+                    { token: 'punctuation.separator.arguments', foreground: '#9ABDF5' },
+                    { token: 'punctuation.separator.parameter', foreground: '#89DDFF' },
+                    { token: 'punctuation.separator.table', foreground: '#89DDFF' },
+                    { token: 'punctuation.definition.block', foreground: '#9ABDF5' },
+                    { token: 'punctuation.definition.parameters', foreground: '#9ABDF5' },
+                    { token: 'punctuation.definition.typeparameters', foreground: '#89DDFF' },
+
+                    { token: 'constant.language', foreground: '#FF9E64' },
+                    { token: 'number', foreground: '#FF9E64' },
+                    { token: 'constants', foreground: '#FF9E64' },
+
+                    // { token: 'support.function', foreground: '#0DB9D7' },
+                    // { token: 'support.function.library', foreground: '#0DB9D7' },
+                    // { token: 'support.type', foreground: '#0DB9D7' },
+                    { token: 'support.function', foreground: '#0DB9D7' },
+                    { token: 'support.function.library', foreground: '#0DB9D7' },
+                    { token: 'support.type', foreground: '#5ab6d6' },
+                ],
+                colors: {
+
+                    'editorIndentGuide.background': '#1a1a1a',
+
+                    'editorSuggestWidget.background': "#181818",
+                    'editorSuggestWidget.border': "#1a1a1a",
+                    'editorSuggestWidget.foreground': "#D5D5D5",
+                    'editorSuggestWidget.selectedBackground': "#404040",
+                    'editorSuggestWidget.highlightForeground': "#18A0FB",
+
+                    'textCodeBlock.background': '#181818',
+                }
+            });
+
+
+
+            require(['vs/basic-languages/monaco.contribution'], function () {
+
+
+
+                editor = monaco.editor.create(document.getElementById('container'), {
+                    value: '-- ようこそ！',
+                    language: 'luau',
+                    theme: "Core",
+                    fontSize: "10px",
+                    fontFamily: "'JetBrains Mono', Consolas, 'Courier New', monospace",
+                    folding: true,
+                    dragAndDrop: true,
+                    links: true,
+                    minimap: {
+                        enabled: true,
+                    },
+                    showFoldingControls: "always",
+                    smoothScrolling: false,
+                    stopRenderingLineAfter: 6500,
+                    cursorBlinking: "smooth",
+                    cursorSmoothCaretAnimation: true,
+                    formatOnPaste: true,
+                    showDeprecated: true,
+                    snippetSuggestions: "inline",
+
+                    autoIndent: "full",
+                    padding: {
+                        top: 24,
+                    }
+                });
+
+                try {
+                    if (CefSharp) {
+                        editor.onKeyDown(function (e) {
+                            // console.log()
+                            if (!(e.altKey || e.ctrlKey || e.shiftKey || e.metaKey)) {
+                                if (e.key !== 'Backspace' || editor.getValue() !== '')
+                                    CefSharp.PostMessage('keydown')
+                            }
+                        })
+                    }
+                } catch { }
+
+                editor.getModel().updateOptions({ insertSpaces: false })
+            });
+
+            monaco.languages.registerCompletionItemProvider('luau', {
+                provideCompletionItems: function (model, position) {
+                    return {
+                        suggestions: getDependencyProposals(position),
+                    };
+                },
+                triggerCharacters: ['.', ':', '"'],
+            });
+
+            monaco.languages.registerColorProvider("luau", {
+                provideColorPresentations: (model, colorInfo) => {
+                    var color = colorInfo.color;
+                    color.type = color.type;
+                    color.alpha = 1;
+
+                    var red256 = Math.round(color.red * 255);
+                    var green256 = Math.round(color.green * 255);
+                    var blue256 = Math.round(color.blue * 255);
+                    var label;
+                    if (editor._GlobalSettings.ColorServiceFormat === ".new") {
+                        label = "Color3.new(" + StringLimit(red256 / 255) + "," + StringLimit(green256 / 255) + "," + StringLimit(blue256 / 255) + ")"
+                    }
+                    else if (editor._GlobalSettings.ColorServiceFormat === ".rgb") {
+                        label = "Color3.fromRGB(" + red256 + "," + green256 + "," + blue256 + ")"
+                    }
+                    else {
+                        label = "Color3.fromRGB(" + red256 + "," + green256 + "," + blue256 + ")"
+                    }
+
+
+                    return [
+                        {
+                            label: label,
+                        },
+                    ];
+                },
+
+                provideDocumentColors: () => {
+                    return GetColors();
+                },
+            });
+
+            CreateCompilerForMonaco = function () {
+                ConvertDataTableToErrorTable = function (Data) {
+                    let ConvertedData = []
+
+                    for (const key in Data) {
+                        let ValObject = Data[key]
+                        let addItem = {}
+                        addItem.message = ValObject.Data.ErrorInfo.ErrorName + " \n " + ValObject.Data.ErrorInfo.ErrorDescription
+                        addItem.startLineNumber = ValObject.Data.Position.Line,
+                            addItem.startColumn = ValObject.Data.Position.Column,
+                            addItem.endLineNumber = ValObject.Data.Position.Line,
+                            addItem.endColumn = ValObject.Data.Position.Column,
+                            addItem.severity = monaco.MarkerSeverity[ValObject.ErrorType]
+
+
+
+                        ConvertedData.push(addItem)
+
+                    }
+
+
+
+                    return ConvertedData
+
+
+
+                }
+
+                CreateServerSocket = function () {
+                    let Socket = new WebSocket("ws://localhost:5900")
+                    Socket.onopen = function () {
+                        console.warn("LanguageServer Socket Connected.")
+                        Socket.onmessage = function (d) {
+                            if (d.data == "No Errors") { if (editor) { UpdateErrors([]) } }
+                            else {
+                                if (editor) {
+                                    UpdateErrors(ConvertDataTableToErrorTable(JSON.parse(d.data)))
+                                }
+                            }
+                        }
+                    }
+                    return Socket
+                }
+
+                var ContentEventCanFire = true
+
+                let Socket = CreateServerSocket();
+                let LastInput;
+
+                editor.onDidChangeModelContent(() => {
+                    LastInput = Date.now()
+
+                    setTimeout(() => {
+                        if (Date.now() - LastInput > 500) {
+                            console.log("sending data")
+                            Socket.send(editor.getValue())
+                        }
+                    }, 500)
+                })
+
+
+            }
+
+            window.onresize = function () {
+                editor.layout();
+            }
+
+            UpdateErrors = function (ErrorData) {
+                if (editor) {
+                    let MODEL = editor.getModel()
+                    console.log(MODEL, ErrorData)
+                    monaco.editor.setModelMarkers(MODEL, "lua", ErrorData)
+                }
+            }
+
+            Cut = function () {
+                editor.focus();
+                document.execCommand('cut');
+            }
+
+            Copy = function () {
+                editor.focus();
+                document.execCommand('copy');
+            }
+
+            Paste = function () {
+                editor.focus();
+                document.execCommand('paste');
+            }
+
+            Undo = function () {
+                editor.focus();
+                document.execCommand('undo');
+            }
+
+            Redo = function () {
+                editor.focus();
+                document.execCommand('redo');
+            }
+
+            Delete = function () {
+                editor.focus();
+                document.execCommand('delete');
+            }
+
+            SelectAll = function () {
+                editor.focus();
+                document.execCommand('selectAll');
+            }
+
+            GetText = function () {
+                return String(editor.getValue());
+            }
+
+            SetText = function (x) {
+                try {
+                    editor.setValue(JSON.parse(`${String(x)}`));
+                } catch (e) {
+                    editor.setValue(String(x))
+                }
+            }
+
+            GetProposals = function () {
+                return Proposals;
+            }
+
+
+            OnDidChangeContent = function (callback) {
+                return editor.onDidChangeModelContent((event) => {
+                    callback(editor.getValue());
+                });
+            }
+
+            OnDidChangeCursorPosition = function (callback) {
+                return editor.onDidChangeCursorPosition((event) => {
+                    callback(event.position);
+                });
+            }
+
+            SetTheme = function (themeName) {
+                if (themeName == 'Core') {
+                    monaco.editor.setTheme('Core')
+                }
+                if (themeName == "Dark") {
+                    monaco.editor.setTheme("net-theme-dark");
+                }
+                if (themeName == "Light") {
+                    monaco.editor.setTheme("net-theme-light");
+                }
+            }
+
+            SwitchMinimap = function (flag) {
+                editor.updateOptions({
+                    minimap: {
+                        enabled: flag,
+                    }
+                });
+            }
+
+            SwitchReadonly = function (flag) {
+                editor.updateOptions({
+                    readOnly: flag,
+                });
+            }
+
+            SwitchRenderWhitespace = function (op) {
+                editor.updateOptions({
+                    renderWhitespace: op,
+                });
+            }
+
+            SwitchLinks = function (flag) {
+                editor.updateOptions({
+                    links: flag,
+                });
+            }
+
+            SwitchLineHeight = function (num) {
+                editor.updateOptions({
+                    lineHeight: num,
+                });
+            }
+
+            SwitchFontSize = function (num) {
+                editor.updateOptions({
+                    fontSize: num,
+                });
+            }
+
+            SwitchFolding = function (flag) {
+                editor.updateOptions({
+                    folding: flag,
+                });
+            }
+
+            SwitchAutoIndent = function (flag) {
+                editor.updateOptions({
+                    autoIndent: flag,
+                });
+            }
+
+            SwitchFontFamily = function (name) {
+                editor.updateOptions({
+                    fontFamily: name,
+                });
+            }
+
+            SwitchFontLigatures = function (flag) {
+                editor.updateOptions({
+                    fontLigatures: flag,
+                });
+            }
+
+            SetGlobalSetting = function (GlobalSetting, Value) {
+                if (editor) {
+                    if (editor._GlobalSettings) {
+                        editor._GlobalSettings[GlobalSetting] = Value
+                    }
+                    else {
+                        console.warn("Global Settings have not loaded yet. Please Wait!")
+                    }
+                }
+            }
+
+
+            ShowErr = function (line, column, endline, endcolumn, errMessage) {
+                editor.revealPositionInCenter({ lineNumber: line, column: column });
+                editor.deltaDecorations([], [
+                    {
+                        range: new monaco.Range(line, column, endline, endcolumn),
+                        options: {
+                            inlineClassName: 'squiggly-error',
+                            hoverMessage: {
+                                value: errMessage,
+                            }
+                        },
+                    },
+                ]);
+            }
+
+            AddSnippet = function (kindName, snippetName, data) {
+                let snippet = {
+                    insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                    kind: monaco.languages.CompletionItemKind[kindName],
+                };
+                for (const key in data) {
+                    let value = data[key];
+                    if (key == "insertText" && typeof value == "object") {
+                        value = value.join("\n");
+                    };
+                    snippet[key] = value;
+                }
+                if (!snippet.label) {
+                    snippet.label = snippetName
+                }
+                if (!snippet.insertText) {
+                    snippet.insertText = snippetName
+                }
+                Proposals.push(snippet);
+            }
+
+            AddRawSnippet = function (data) {
+                Proposals.push(data);
+            }
+
+            SetScroll = function (line) {
+                editor.revealLineInCenter({ lineNumber: line });
+            }
+
+            Refresh = function () {
+                var text = getText();
+                setText("");
+                editor.trigger('keyboard', 'type', { text: text });
+            }
+
+            FindNameInExclude = function (Name) {
+                for (const n in AutoCompleteExcludes) {
+                    if (n == Name) {
+                        return true
+                    }
+                }
+                return false
+            }
+
+            AddNameToExclude = function (Name) {
+                if (FindNameInExclude(Name) == false) {
+                    AutoCompleteExcludes.push(Name)
+                }
+            }
+
+            RemoveNameFromExclude = function (Name) {
+                if (FindNameInExclude(Name) == true) {
+                    AutoCompleteExcludes.splice(AutoCompleteExcludes.findIndex(n => n === name), 1)
+                }
+            }
+
+
+            async function InitMonaco() {
+                //--// Wait Until Monaco Loads //--//
+                if (editor) {
+
+                    editor._GlobalSettings = {};
+                    SetGlobalSetting("ColorServiceFormat", ".new")
+                    console.log(editor)
+                    CreateCompilerForMonaco()
+                }
+                else {
+                    setTimeout(InitMonaco, 100)
+                }
+            }
+
+            InitMonaco()
+
+        });
+    </script>
+
+</body>
+
+</html>
