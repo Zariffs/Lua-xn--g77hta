@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":[],"Event":[],"Method":{"Call":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/Call)"]},"insertText":"Call(${1:key}, ${2:input}) \n\t\nend","label":{"name":"Call","type":"(Function)"}},"SetItem":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/SetItem)"]},"insertText":"SetItem(${1:key}, ${2:value}) \n\t\nend","label":{"name":"SetItem","type":"(Function)"}},"Bind":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/Bind)"]},"insertText":"Bind(${1:key}, ${2:callback}) \n\t\nend","label":{"name":"Bind","type":"(Function)"}},"BindAndFire":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/BindAndFire)"]},"insertText":"BindAndFire(${1:key}, ${2:callback}) \n\t\nend","label":{"name":"BindAndFire","type":"(Function)"}},"RemoveItem":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/RemoveItem)"]},"insertText":"RemoveItem(${1:key}) \n\t\nend","label":{"name":"RemoveItem","type":"(Function)"}},"Fire":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/Fire)"]},"insertText":"Fire(${1:key}, ${2:value}) \n\t\nend","label":{"name":"Fire","type":"(Function)"}},"GetItem":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/GetItem)"]},"insertText":"GetItem(${1:key}, ${2:defaultValue}) \n\t\nend","label":{"name":"GetItem","type":"(Function)"}},"HasItem":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/MemStorageService/HasItem)"]},"insertText":"HasItem(${1:key}) \n\t\nend","label":{"name":"HasItem","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})

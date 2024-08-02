@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"FormFactor":{"label":{"name":"FormFactor","type":"(FormFactor)"}},"MeshData":{"label":{"name":"MeshData","type":"(BinaryString)"}},"InitialSize":{"label":{"name":"InitialSize","type":"(Vector3)"}},"CSGMesh2KernelMap":{"label":{"name":"CSGMesh2KernelMap","type":"(SharedString)"}},"SerializedCSGTree":{"label":{"name":"SerializedCSGTree","type":"(SharedString)"}},"UsePartColor":{"label":{"name":"UsePartColor","type":"(bool)"}},"MeshData2":{"label":{"name":"MeshData2","type":"(SharedString)"}},"TriangleCount":{"label":{"name":"TriangleCount","type":"(int)"}},"AssetId":{"label":{"name":"AssetId","type":"(Content)"}},"SmoothingAngle":{"label":{"name":"SmoothingAngle","type":"(float)"}},"RenderFidelity":{"label":{"name":"RenderFidelity","type":"(RenderFidelity)"}},"PhysicsData":{"label":{"name":"PhysicsData","type":"(BinaryString)"}},"ChildData":{"label":{"name":"ChildData","type":"(BinaryString)"}},"ChildData2":{"label":{"name":"ChildData2","type":"(SharedString)"}},"CSGPropertyData":{"label":{"name":"CSGPropertyData","type":"(CSGPropertyData)"}}},"Event":{"RequestMeshFullUpdate":{"label":{"name":"RequestMeshFullUpdate","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/PartOperation/RequestMeshFullUpdate)"]}},"MeshDeltaUpdate":{"label":{"name":"MeshDeltaUpdate","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/PartOperation/MeshDeltaUpdate)"]}},"MeshFullUpdate":{"label":{"name":"MeshFullUpdate","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/PartOperation/MeshFullUpdate)"]}}},"Method":{"SubstituteGeometry":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/PartOperation/SubstituteGeometry)"]},"insertText":"SubstituteGeometry(${1:source}) \n\t\nend","label":{"name":"SubstituteGeometry","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
