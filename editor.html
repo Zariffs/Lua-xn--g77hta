@@ -50,14 +50,6 @@
 
     <script type="text/javascript">
 
-         window.addEventListener('message', function(event) {
-          if (event.data.command === 'GetText') {
-            console.log('GetText command received');
-          } else if (event.data.command === 'Clear') {
-            console.log('Clear command received');
-          }
-        });
-
 
         require.config({
             paths: {
@@ -803,7 +795,63 @@
                 }
             }
 
+            window.addEventListener('message', function(event) {
+              const command = event.data.command;
+            
+              switch (command) {
+                case 'GetText':
+                  const text = GetText();  // Get text from the editor
+                  event.source.postMessage({ command: 'TextContent', text: text }, event.origin);
+                  break;
 
+                  
+                case 'Clear':
+                  SetText("");  // Clear the text in the editor
+                  break;
+            
+                case 'SetText':
+                  if (event.data.text) {
+                    SetText(event.data.text);  // Set the text in the editor
+                  }
+                  break;
+            
+                case 'Cut':
+                  Cut();  // Cut selected text
+                  break;
+            
+                case 'Copy':
+                  Copy();  // Copy selected text
+                  break;
+            
+                case 'Paste':
+                  Paste();  // Paste from clipboard
+                  break;
+            
+                case 'Undo':
+                  Undo();  // Undo the last action
+                  break;
+            
+                case 'Redo':
+                  Redo();  // Redo the last undone action
+                  break;
+            
+                case 'Delete':
+                  Delete();  // Delete selected text
+                  break;
+            
+                case 'SelectAll':
+                  SelectAll();  // Select all text
+                  break;
+            
+                // Add more cases as needed for other commands
+            
+                default:
+                  console.warn('Unknown command:', command);
+              }
+            });
+
+
+            
             async function InitMonaco() {
                 //--// Wait Until Monaco Loads //--//
                 if (editor) {
