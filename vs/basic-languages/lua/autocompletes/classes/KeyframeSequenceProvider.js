@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":[],"Event":[],"Method":{"RegisterActiveKeyframeSequence":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/RegisterActiveKeyframeSequence)"]},"insertText":"RegisterActiveKeyframeSequence(${1:keyframeSequence}) \n\t\nend","label":{"name":"RegisterActiveKeyframeSequence","type":"(Function)"}},"GetKeyframeSequenceAsync":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/GetKeyframeSequenceAsync)"]},"insertText":"GetKeyframeSequenceAsync(${1:assetId}) \n\t\nend","label":{"name":"GetKeyframeSequenceAsync","type":"(Function)"}},"GetAnimations":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/GetAnimations)"]},"insertText":"GetAnimations(${1:userId}) \n\t\nend","label":{"name":"GetAnimations","type":"(Function)"}},"GetKeyframeSequence":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/GetKeyframeSequence)"]},"insertText":"GetKeyframeSequence(${1:assetId}) \n\t\nend","label":{"name":"GetKeyframeSequence","type":"(Function)"}},"RegisterKeyframeSequence":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/RegisterKeyframeSequence)"]},"insertText":"RegisterKeyframeSequence(${1:keyframeSequence}) \n\t\nend","label":{"name":"RegisterKeyframeSequence","type":"(Function)"}},"GetMemStats":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/GetMemStats)"]},"insertText":"GetMemStats() \n\t\nend","label":{"name":"GetMemStats","type":"(Function)"}},"GetKeyframeSequenceById":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/KeyframeSequenceProvider/GetKeyframeSequenceById)"]},"insertText":"GetKeyframeSequenceById(${1:assetId}, ${2:useCache}) \n\t\nend","label":{"name":"GetKeyframeSequenceById","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})

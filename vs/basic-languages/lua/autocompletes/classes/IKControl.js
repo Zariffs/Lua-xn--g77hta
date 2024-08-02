@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"Enabled":{"label":{"name":"Enabled","type":"(bool)"}},"Type":{"label":{"name":"Type","type":"(IKControlType)"}},"ChainRoot":{"label":{"name":"ChainRoot","type":"(Instance)"}},"EndEffector":{"label":{"name":"EndEffector","type":"(Instance)"}},"SmoothTime":{"label":{"name":"SmoothTime","type":"(float)"}},"EndEffectorOffset":{"label":{"name":"EndEffectorOffset","type":"(CFrame)"}},"Pole":{"label":{"name":"Pole","type":"(Instance)"}},"Target":{"label":{"name":"Target","type":"(Instance)"}},"Priority":{"label":{"name":"Priority","type":"(int)"}},"Weight":{"label":{"name":"Weight","type":"(float)"}},"Offset":{"label":{"name":"Offset","type":"(CFrame)"}}},"Event":[],"Method":{"GetNodeLocalCFrame":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetNodeLocalCFrame)"]},"insertText":"GetNodeLocalCFrame(${1:index}) \n\t\nend","label":{"name":"GetNodeLocalCFrame","type":"(Function)"}},"GetChainCount":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetChainCount)"]},"insertText":"GetChainCount() \n\t\nend","label":{"name":"GetChainCount","type":"(Function)"}},"GetNodeWorldCFrame":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetNodeWorldCFrame)"]},"insertText":"GetNodeWorldCFrame(${1:index}) \n\t\nend","label":{"name":"GetNodeWorldCFrame","type":"(Function)"}},"GetChainLength":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetChainLength)"]},"insertText":"GetChainLength() \n\t\nend","label":{"name":"GetChainLength","type":"(Function)"}},"GetSmoothedFinalTarget":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetSmoothedFinalTarget)"]},"insertText":"GetSmoothedFinalTarget() \n\t\nend","label":{"name":"GetSmoothedFinalTarget","type":"(Function)"}},"GetRawFinalTarget":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/IKControl/GetRawFinalTarget)"]},"insertText":"GetRawFinalTarget() \n\t\nend","label":{"name":"GetRawFinalTarget","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})

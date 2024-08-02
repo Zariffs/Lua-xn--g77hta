@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":[],"Event":[],"Method":{"GetAsyncFullUrl":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/GetAsyncFullUrl)"]},"insertText":"GetAsyncFullUrl(${1:apiUrl}, ${2:priority}, ${3:httpRequestType}) \n\t\nend","label":{"name":"GetAsyncFullUrl","type":"(Function)"}},"GetDocumentationUrl":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/GetDocumentationUrl)"]},"insertText":"GetDocumentationUrl(${1:partialUrl}) \n\t\nend","label":{"name":"GetDocumentationUrl","type":"(Function)"}},"PostAsync":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/PostAsync)"]},"insertText":"PostAsync(${1:apiUrlPath}, ${2:data}, ${3:priority}, ${4:content_type}, ${5:httpRequestType}) \n\t\nend","label":{"name":"PostAsync","type":"(Function)"}},"RequestAsync":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/RequestAsync)"]},"insertText":"RequestAsync(${1:requestOptions}, ${2:priority}, ${3:content_type}, ${4:httpRequestType}) \n\t\nend","label":{"name":"RequestAsync","type":"(Function)"}},"PostAsyncFullUrl":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/PostAsyncFullUrl)"]},"insertText":"PostAsyncFullUrl(${1:apiUrl}, ${2:data}, ${3:priority}, ${4:content_type}, ${5:httpRequestType}) \n\t\nend","label":{"name":"PostAsyncFullUrl","type":"(Function)"}},"GetAsync":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/GetAsync)"]},"insertText":"GetAsync(${1:apiUrlPath}, ${2:priority}, ${3:httpRequestType}) \n\t\nend","label":{"name":"GetAsync","type":"(Function)"}},"RequestLimitedAsync":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/HttpRbxApiService/RequestLimitedAsync)"]},"insertText":"RequestLimitedAsync(${1:requestOptions}, ${2:priority}, ${3:content_type}, ${4:httpRequestType}) \n\t\nend","label":{"name":"RequestLimitedAsync","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
