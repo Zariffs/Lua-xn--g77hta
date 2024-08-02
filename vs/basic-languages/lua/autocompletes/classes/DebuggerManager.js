@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"DebuggingEnabled":{"label":{"name":"DebuggingEnabled","type":"(bool)"}}},"Event":{"DebuggerAdded":{"label":{"name":"DebuggerAdded","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/DebuggerAdded)"]}},"DebuggerRemoved":{"label":{"name":"DebuggerRemoved","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/DebuggerRemoved)"]}}},"Method":{"GetDebuggers":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/GetDebuggers)"]},"insertText":"GetDebuggers() \n\t\nend","label":{"name":"GetDebuggers","type":"(Function)"}},"Resume":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/Resume)"]},"insertText":"Resume() \n\t\nend","label":{"name":"Resume","type":"(Function)"}},"StepOver":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/StepOver)"]},"insertText":"StepOver() \n\t\nend","label":{"name":"StepOver","type":"(Function)"}},"StepIn":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/StepIn)"]},"insertText":"StepIn() \n\t\nend","label":{"name":"StepIn","type":"(Function)"}},"EnableDebugging":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/EnableDebugging)"]},"insertText":"EnableDebugging() \n\t\nend","label":{"name":"EnableDebugging","type":"(Function)"}},"StepOut":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/StepOut)"]},"insertText":"StepOut() \n\t\nend","label":{"name":"StepOut","type":"(Function)"}},"AddDebugger":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/DebuggerManager/AddDebugger)"]},"insertText":"AddDebugger(${1:script}) \n\t\nend","label":{"name":"AddDebugger","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})

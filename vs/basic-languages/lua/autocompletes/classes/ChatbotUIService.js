@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":[],"Event":{"ShiftVariationSignal":{"label":{"name":"ShiftVariationSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/ShiftVariationSignal)"]}},"SettingChangedSignal":{"label":{"name":"SettingChangedSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/SettingChangedSignal)"]}},"ShiftToAssetIdSignal":{"label":{"name":"ShiftToAssetIdSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/ShiftToAssetIdSignal)"]}},"FindVariationsSignal":{"label":{"name":"FindVariationsSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/FindVariationsSignal)"]}},"ActionActivatedSignal":{"label":{"name":"ActionActivatedSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/ActionActivatedSignal)"]}},"SetMaterialSettingsSignal":{"label":{"name":"SetMaterialSettingsSignal","type":"(RBXScriptSignal)"},"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/SetMaterialSettingsSignal)"]}}},"Method":{"GetSettings":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/GetSettings)"]},"insertText":"GetSettings() \n\t\nend","label":{"name":"GetSettings","type":"(Function)"}},"DisplayContent":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/ChatbotUIService/DisplayContent)"]},"insertText":"DisplayContent(${1:contentType}, ${2:data}) \n\t\nend","label":{"name":"DisplayContent","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
