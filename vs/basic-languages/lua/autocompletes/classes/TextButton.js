@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"FontFace":{"label":{"name":"FontFace","type":"(Font)"}},"LineHeight":{"label":{"name":"LineHeight","type":"(float)"}},"TextStrokeColor3":{"label":{"name":"TextStrokeColor3","type":"(Color3)"}},"TextStrokeTransparency":{"label":{"name":"TextStrokeTransparency","type":"(float)"}},"LocalizationMatchIdentifier":{"label":{"name":"LocalizationMatchIdentifier","type":"(string)"}},"TextYAlignment":{"label":{"name":"TextYAlignment","type":"(TextYAlignment)"}},"LocalizationMatchedSourceText":{"label":{"name":"LocalizationMatchedSourceText","type":"(string)"}},"TextDirection":{"label":{"name":"TextDirection","type":"(TextDirection)"}},"TextWrapped":{"label":{"name":"TextWrapped","type":"(bool)"}},"Confidential":{"label":{"name":"Confidential","type":"(bool)"}},"TextWrap":{"label":{"name":"TextWrap","type":"(bool)"}},"TextTruncate":{"label":{"name":"TextTruncate","type":"(TextTruncate)"}},"RichText":{"label":{"name":"RichText","type":"(bool)"}},"TextFits":{"label":{"name":"TextFits","type":"(bool)"}},"TextColor3":{"label":{"name":"TextColor3","type":"(Color3)"}},"LocalizedText":{"label":{"name":"LocalizedText","type":"(string)"}},"Text":{"label":{"name":"Text","type":"(string)"}},"TextTransparency":{"label":{"name":"TextTransparency","type":"(float)"}},"TextSize":{"label":{"name":"TextSize","type":"(float)"}},"ContentText":{"label":{"name":"ContentText","type":"(string)"}},"Font":{"label":{"name":"Font","type":"(Font)"}},"TextBounds":{"label":{"name":"TextBounds","type":"(Vector2)"}},"TextXAlignment":{"label":{"name":"TextXAlignment","type":"(TextXAlignment)"}},"FontSize":{"label":{"name":"FontSize","type":"(FontSize)"}},"MaxVisibleGraphemes":{"label":{"name":"MaxVisibleGraphemes","type":"(int)"}},"TextScaled":{"label":{"name":"TextScaled","type":"(bool)"}},"TextColor":{"label":{"name":"TextColor","type":"(BrickColor)"}}},"Event":[],"Method":{"SetTextFromInput":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/TextButton/SetTextFromInput)"]},"insertText":"SetTextFromInput(${1:text}) \n\t\nend","label":{"name":"SetTextFromInput","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
