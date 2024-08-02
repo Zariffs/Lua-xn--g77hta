@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":[],"Event":[],"Method":{"PickFileWithPrompt":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/PickFileWithPrompt)"]},"insertText":"PickFileWithPrompt() \n\t\nend","label":{"name":"PickFileWithPrompt","type":"(Function)"}},"PickMultipleFilesWithPrompt":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/PickMultipleFilesWithPrompt)"]},"insertText":"PickMultipleFilesWithPrompt() \n\t\nend","label":{"name":"PickMultipleFilesWithPrompt","type":"(Function)"}},"GetAllPresets":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/GetAllPresets)"]},"insertText":"GetAllPresets() \n\t\nend","label":{"name":"GetAllPresets","type":"(Function)"}},"SavePreset":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/SavePreset)"]},"insertText":"SavePreset(${1:name}, ${2:preset}) \n\t\nend","label":{"name":"SavePreset","type":"(Function)"}},"StartSessionWithPrompt":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/StartSessionWithPrompt)"]},"insertText":"StartSessionWithPrompt() \n\t\nend","label":{"name":"StartSessionWithPrompt","type":"(Function)"}},"StartSessionWithPath":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/StartSessionWithPath)"]},"insertText":"StartSessionWithPath(${1:filePath}) \n\t\nend","label":{"name":"StartSessionWithPath","type":"(Function)"}},"GetPreset":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/GetPreset)"]},"insertText":"GetPreset(${1:name}) \n\t\nend","label":{"name":"GetPreset","type":"(Function)"}},"RemovePreset":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/AssetImportService/RemovePreset)"]},"insertText":"RemovePreset(${1:name}) \n\t\nend","label":{"name":"RemovePreset","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})

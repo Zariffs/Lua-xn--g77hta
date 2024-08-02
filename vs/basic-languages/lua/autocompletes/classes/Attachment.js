@@ -1,0 +1,12 @@
+define(["require", "exports"], function (require, exports) {
+    Object.defineProperty(exports, "__esModule", { value: true });
+
+    exports.autocompletes = {
+
+
+
+    
+
+"Field":{"Visible":{"label":{"name":"Visible","type":"(bool)"}},"WorldOrientation":{"label":{"name":"WorldOrientation","type":"(Vector3)"}},"CFrame":{"label":{"name":"CFrame","type":"(CFrame)"}},"WorldSecondaryAxis":{"label":{"name":"WorldSecondaryAxis","type":"(Vector3)"}},"Axis":{"label":{"name":"Axis","type":"(Vector3)"}},"Rotation":{"label":{"name":"Rotation","type":"(Vector3)"}},"WorldCFrame":{"label":{"name":"WorldCFrame","type":"(CFrame)"}},"SecondaryAxis":{"label":{"name":"SecondaryAxis","type":"(Vector3)"}},"Position":{"label":{"name":"Position","type":"(Vector3)"}},"Orientation":{"label":{"name":"Orientation","type":"(Vector3)"}},"WorldPosition":{"label":{"name":"WorldPosition","type":"(Vector3)"}},"WorldRotation":{"label":{"name":"WorldRotation","type":"(Vector3)"}},"WorldAxis":{"label":{"name":"WorldAxis","type":"(Vector3)"}}},"Event":[],"Method":{"GetAxis":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/Attachment/GetAxis)"]},"insertText":"GetAxis() \n\t\nend","label":{"name":"GetAxis","type":"(Function)"}},"GetSecondaryAxis":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/Attachment/GetSecondaryAxis)"]},"insertText":"GetSecondaryAxis() \n\t\nend","label":{"name":"GetSecondaryAxis","type":"(Function)"}},"SetAxis":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/Attachment/SetAxis)"]},"insertText":"SetAxis(${1:axis}) \n\t\nend","label":{"name":"SetAxis","type":"(Function)"}},"GetConstraints":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/Attachment/GetConstraints)"]},"insertText":"GetConstraints() \n\t\nend","label":{"name":"GetConstraints","type":"(Function)"}},"SetSecondaryAxis":{"documentation":{"value":["[View documentation](https://developer.roblox.com/en-us/api-reference/events/Attachment/SetSecondaryAxis)"]},"insertText":"SetSecondaryAxis(${1:axis}) \n\t\nend","label":{"name":"SetSecondaryAxis","type":"(Function)"}}},
+
+__requires__: [['classes/Instance']],}})
