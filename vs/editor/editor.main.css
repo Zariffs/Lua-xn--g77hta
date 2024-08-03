@@ -2221,10 +2221,10 @@
 	background: #000;
 }
 .monaco-editor .minimap-slider:hover .minimap-slider-horizontal {
-	background: var(--vscode-minimapSlider-hoverBackground);
+	background: #000;
 }
 .monaco-editor .minimap-slider.active .minimap-slider-horizontal {
-	background: var(--vscode-minimapSlider-activeBackground);
+	background: #000;
 }
 .monaco-editor .minimap-shadow-visible {
 	box-shadow: var(--vscode-scrollbar-shadow) -6px 0 6px -6px inset;
