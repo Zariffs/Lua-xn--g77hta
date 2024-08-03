@@ -2099,7 +2099,7 @@
 }
 
 .mtkoverflow {
-	background-color: var(--vscode-button-background, #000);
+	background-color: var(--vscode-button-background, var(--vscode-editor-background));
 	color: var(--vscode-button-foreground, var(--vscode-editor-foreground));
 	border-width: 1px;
 	border-style: solid;
@@ -2182,7 +2182,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .monaco-editor .margin {
-	background-color: #000;
+	background-color: var(--vscode-editorGutter-background);
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -2218,7 +2218,7 @@
 }
 /* END cover the case that slider is visible on mouseover */
 .monaco-editor .minimap-slider .minimap-slider-horizontal {
-	background: var(--vsco-background);
+	background: var(--vscode-minimapSlider-background);
 }
 .monaco-editor .minimap-slider:hover .minimap-slider-horizontal {
 	background: var(--vscode-minimapSlider-hoverBackground);
@@ -2557,7 +2557,7 @@
 
 .monaco-editor .noModificationsOverlay {
 	z-index: 1;
-	background: #000;
+	background: var(--vscode-editor-background);
 
 	display: flex;
 	justify-content: center;
@@ -2623,7 +2623,7 @@
 }
 
 .monaco-diff-editor .moved-blocks-lines .arrow-rectangle {
-	fill: #000;
+	fill: var(--vscode-editor-background);
 }
 
 .monaco-diff-editor .moved-blocks-lines {
@@ -2684,7 +2684,7 @@
 .monaco-scrollable-element.modified-in-monaco-diff-editor .slider {
 	z-index: 10;
 }
-.modified-in-monaco-diff-editor				.slider.active { background: rgba(0, 0, 0, 0); }
+.modified-in-monaco-diff-editor				.slider.active { background: rgba(171, 171, 171, .4); }
 .modified-in-monaco-diff-editor.hc-black	.slider.active { background: none; }
 .modified-in-monaco-diff-editor.hc-light	.slider.active { background: none; }
 
@@ -2981,10 +2981,10 @@
 	overflow: visible;
 	-webkit-text-size-adjust: 100%;
 	color: var(--vscode-editor-foreground);
-	background-color: #000;
+	background-color: var(--vscode-editor-background);
 }
 .monaco-editor-background {
-	background-color: #000;
+	background-color: var(--vscode-editor-background);
 }
 .monaco-editor .rangeHighlight {
 	background-color: var(--vscode-editor-rangeHighlightBackground);
@@ -3096,7 +3096,7 @@
 	align-items: center;
 	padding: 8px 5px;
 	color: var(--vscode-foreground);
-	background: #000;
+	background: var(--vscode-editor-background);
 
 	z-index: 1000;
 
@@ -3226,7 +3226,7 @@ TODO@hediet: move colors from git extension to core!
 	width: 100%;
 	height: 100%;
 	opacity: 0.3;
-	background-color: #000;
+	background-color: var(--vscode-editor-background);
 	z-index: 1;
 }
 
@@ -4028,7 +4028,7 @@ TODO@hediet: move colors from git extension to core!
 }
 
 .monaco-editor .reference-zone-widget .preview .monaco-editor .margin {
-	background-color: #000; /* --vscode-editorGutter-background */
+	background-color: var(--vscode-peekViewEditorGutter-background);
 }
 
 /* High Contrast Theming */
