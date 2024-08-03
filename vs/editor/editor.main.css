@@ -2218,7 +2218,7 @@
 }
 /* END cover the case that slider is visible on mouseover */
 .monaco-editor .minimap-slider .minimap-slider-horizontal {
-	background: var(--vscode-minimapSlider-background);
+	background: #000;
 }
 .monaco-editor .minimap-slider:hover .minimap-slider-horizontal {
 	background: var(--vscode-minimapSlider-hoverBackground);
