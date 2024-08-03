@@ -2182,7 +2182,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 .monaco-editor .margin {
-	background-color: var(--vscode-editorGutter-background);
+	background-color: #000;
 }
 
 /*---------------------------------------------------------------------------------------------
@@ -4028,7 +4028,7 @@ TODO@hediet: move colors from git extension to core!
 }
 
 .monaco-editor .reference-zone-widget .preview .monaco-editor .margin {
-	background-color: var(--vscode-peekViewEditorGutter-background);
+	background-color: #000; /* --vscode-editorGutter-background */
 }
 
 /* High Contrast Theming */
