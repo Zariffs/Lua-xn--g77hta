@@ -2981,10 +2981,10 @@
 	overflow: visible;
 	-webkit-text-size-adjust: 100%;
 	color: var(--vscode-editor-foreground);
-	background-color: var(--vscode-editor-background);
+	background-color: #000;
 }
 .monaco-editor-background {
-	background-color: var(--vscode-editor-background);
+	background-color: #000;
 }
 .monaco-editor .rangeHighlight {
 	background-color: var(--vscode-editor-rangeHighlightBackground);
