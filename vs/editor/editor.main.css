@@ -2684,7 +2684,7 @@
 .monaco-scrollable-element.modified-in-monaco-diff-editor .slider {
 	z-index: 10;
 }
-.modified-in-monaco-diff-editor				.slider.active { background: rgba(171, 171, 171, .4); }
+.modified-in-monaco-diff-editor				.slider.active { background: rgba(0, 0, 0, 0); }
 .modified-in-monaco-diff-editor.hc-black	.slider.active { background: none; }
 .modified-in-monaco-diff-editor.hc-light	.slider.active { background: none; }
 
