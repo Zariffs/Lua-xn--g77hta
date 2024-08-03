@@ -332,7 +332,7 @@
                 base: 'vs-dark',
                 inherit: true,
                 rules: [
-                    { token: '', foreground: '#C3CCDB' },
+                    { token: '', foreground: '#000' },
                     { token: 'variable.language.self', foreground: '#F7768E' },
                     { token: 'variable.parameter.variadic', foreground: '#F7768E' },
                     { token: 'variable.parameter.function', foreground: '#E0AF68' },
@@ -412,9 +412,6 @@
 
 
             require(['vs/basic-languages/monaco.contribution'], function () {
-
-
-
                 editor = monaco.editor.create(document.getElementById('container'), {
                     value: '-- Tenkai',
                     language: 'luau',
@@ -577,6 +574,18 @@
             Cut = function () {
                 editor.focus();
                 document.execCommand('cut');
+            }
+
+            SetTheme = function (thing) {
+                if (thing == 'Core') {
+                    monaco.editor.setTheme('Core')
+                }
+                if (thing == "Dark") {
+                    monaco.editor.setTheme("net-theme-dark");
+                }
+                if (thing == "Light") {
+                    monaco.editor.setTheme("net-theme-light");
+                }
             }
 
             Copy = function () {
